@@ -16,6 +16,10 @@ $isLoggedIn = isset($_SESSION['user']) && isset($_SESSION['user']['username']);?
         <li class="nav-item">
           <a class="nav-link" href="./server/requests.php?logout=true">Logout</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link " href="?ask=true">Ask a question</a>
+        </li>
+       
         <?php }
        ?>
        <?php 

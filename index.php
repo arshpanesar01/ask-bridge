@@ -17,8 +17,8 @@
     elseif(isset($_GET['login'])&& !$isLoggedIn){
     include('./client/login.php');
     }
-    else{
-        //
+    elseif(isset($_GET['ask'])) {
+       include('./client/ask.php');
     }
 ?>
 </body>
