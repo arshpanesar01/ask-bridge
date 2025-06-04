@@ -24,5 +24,27 @@ if(isset($_POST['signup']))
         echo "User not registeres";
     }
 }
+else if(isset($_POST['login'])){
+ $email = $_POST['email'];
+ $password = $_POST['password'];
+ $username ="";
+ $query="select * from users where email='$email' and password='$password' ";
+ $result = $conn->query($query);
+ if($result->num_rows==1)
+    {
+        foreach($result as $row){
+           
+            $username=$row['username'];
+        }
+        $_SESSION["user"]= ["username"=> $username, "email" => $email];
+        header("location: /ask-bridge");
+    }
+  
+}  else if (isset($_GET['logout'])) {
+    session_unset();
+
+    header("location: /ask-bridge");
+    exit();
+}
 
 ?>
