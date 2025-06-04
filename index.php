@@ -11,7 +11,15 @@
     <?php 
 
     include('./client/header.php');
-
+    if(isset($_GET['signup'])){
+    include('./client/signup.php');
+    }
+    elseif(isset($_GET['login'])){
+    include('./client/login.php');
+    }
+    else{
+        //
+    }
 ?>
 </body>
 </html>
