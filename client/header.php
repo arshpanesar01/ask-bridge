@@ -3,8 +3,8 @@
 <?php
 $isLoggedIn = isset($_SESSION['user']) && isset($_SESSION['user']['username']);?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#"><img src=".\public\newlogo.png"></a>
+  <div class="container">
+    <a class="navbar-brand" href="./"><img src=".\public\newlogo.png"></a>
     
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
@@ -14,12 +14,16 @@ $isLoggedIn = isset($_SESSION['user']) && isset($_SESSION['user']['username']);?
         <?php 
         if($isLoggedIn) { ?>
         <li class="nav-item">
-          <a class="nav-link" href="./server/requests.php?logout=true">Logout</a>
+          <a class="nav-link" href="./server/requests.php?logout=true">Logout(<?php
+          echo ucfirst($_SESSION['user']['username'])
+          ?>)</a>
         </li>
         <li class="nav-item">
           <a class="nav-link " href="?ask=true">Ask a question</a>
         </li>
-       
+       <li class="nav-item">
+          <a class="nav-link " href="?u-id=<?php echo $_SESSION['user']['user_id']?>" >My questions</a>
+        </li>
         <?php }
        ?>
        <?php 
@@ -33,13 +37,16 @@ $isLoggedIn = isset($_SESSION['user']) && isset($_SESSION['user']['username']);?
         <?php }
        ?>
         
+        
         <li class="nav-item">
-          <a class="nav-link" href="#">Category</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Latest Question</a>
+            <a class="nav-link" href="?latest=true">Latest Question</a>
         </li>
       </ul>
+       
     </div>
+    <form class="d-flex" action="">
+        <input class="form-control me-2" name="search"type="search" placeholder="Search questions" >
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
   </div>
 </nav>

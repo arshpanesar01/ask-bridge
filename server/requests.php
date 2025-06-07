@@ -91,6 +91,16 @@ else if (isset($_POST['ask'])) {
         echo "Answer is not submitted";
     }
 }
+elseif(isset($_GET["delete"])){
+    echo $qid = $_GET["delete"];
+    $query= $conn->prepare("delete from questions where id = $qid");
+    $result= $query->execute();
+    if($result){
+        header("location: /ask-bridge");
+    }else{
+        echo"Question not deleted";
+    }
+}
 ?>
 
 
