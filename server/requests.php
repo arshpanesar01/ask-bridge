@@ -69,7 +69,26 @@ else if (isset($_POST['ask'])) {
         header("location: /ask-bridge");
     }
     else{
-        echo "Question not added to website";
+        echo "Question is not added to website";
+    }
+}elseif(isset($_POST["answer"]))
+{
+    $answer = $_POST['answer']; 
+    $question_id = $_POST['question_id'];
+    $user_id = $_SESSION['user']['user_id'];
+
+    $query = $conn->prepare("INSERT INTO `answers` (`id`,`answer`, `question_id`, `user_id`) 
+    VALUES (NULL,'$answer','$question_id','$user_id')");
+    $result = $query->execute();
+ 
+    if($result)
+    {
+        
+       
+        header("location: /ask-bridge?q-id=$question_id");
+    }
+    else{
+        echo "Answer is not submitted";
     }
 }
 ?>
