@@ -1,10 +1,18 @@
 
     <div class="container">
-    <h1 class="heading">Questions</h1> 
-    <div class="col-8">
+
+    <div class="row">
+<div class="col-8">
+        <h1 class="heading">Questions</h1> 
     <?php
     include('./common/db.php');
-    $query = "SELECT * FROM questions";
+    if(isset($_GET["c-id"])){
+       $query= "select * from questions where category_id=$cid";
+    }
+    else{
+        $query= "select * from questions";
+    }
+   
     $result = $conn->query($query);
     foreach ($result as $row) {
         $title = $row['title'];
@@ -16,5 +24,13 @@
 
     }
     ?>
-
 </div>
+
+<div class="col-4">
+<?php
+    include("categorylist.php");
+
+?>
+</div>
+
+    </div>
